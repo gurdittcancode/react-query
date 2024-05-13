@@ -9,9 +9,18 @@ const PostsList1: FC<PostsList1Props> = () => {
   const postsQuery: UseQueryResult<{ id: number; title: string }[]> = useQuery({
     queryKey: ['posts'],
     queryFn: getPosts,
-    refetchInterval: 1000 //ms
+    // refetchInterval: 1000, //ms
+    initialData: [{ id: 1, title: 'Initial Data' }],
+    // it's going to persist, use placeholderData instead
   });
 
+  // const queries = useQueries({queries: postsQuery.data.map(post => {
+  //   return {
+  //  queryKey: ["posts", post.id], queryFn: (post.id) => getPost(post.id)
+  // }
+  // to run multiple queries
+  // })})
+  // console.log(queries.map(q => q.data))
 
   if (postsQuery.status === 'pending') return <h1>Loading...</h1>;
   if (postsQuery.status === 'error') {

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import PostsList1 from './PostsList1';
 import PostsList2 from './PostsList2';
 import Post from './Post';
+import CreatePost from './CreatePost';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState(<PostsList1 />);
@@ -16,6 +17,12 @@ export default function App() {
       </button>
       <button onClick={() => setCurrentPage(<Post id={1} />)}>
         First Post
+      </button>
+      <button
+        onClick={() =>
+          setCurrentPage(<CreatePost setCurrentPage={setCurrentPage} />)
+        }>
+        New Post
       </button>
       <br />
 
